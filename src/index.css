@@ -1,0 +1,257 @@
+/* --- Portfolio Design System & Variables --- */
+:root {
+  /* Strict Octopus/Line-Art Theme Palette */
+  --color-bg: #ffffff;
+  --color-bg-pale: #f4f7fa;
+  --color-ink-navy: #0f2942;
+  --color-deep-blue: #16324f;
+  --color-mid-blue: #3d6d9e;
+  --color-accent-coral: #e08a5e;
+  --color-accent-gold: #d4af37;
+  --color-accent-blue: #3d6d9e;
+  --color-border: #16324f; /* Thin navy borders for screenshots and cards */
+  --color-border-light: #e2e8f0;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Animation durations */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.6s ease;
+}
+
+/* Base resets & styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-deep-blue);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-ink-navy);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  opacity: 0.9;
+}
+
+a {
+  color: var(--color-ink-navy);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+/* Letter-spaced uppercase section labels */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-mid-blue);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  position: relative;
+}
+
+section {
+  padding: var(--space-xl) 0;
+  position: relative;
+  border-bottom: 1px solid rgba(61, 109, 158, 0.15);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+/* Navigation indicators */
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--color-deep-blue);
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent-coral);
+  transition: width var(--transition-normal);
+}
+
+.nav-link.active::after, .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Custom interactive line elements */
+.tentacle-spine-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .tentacle-spine-wrapper {
+    left: 24px;
+    transform: none;
+  }
+}
+
+/* Card layout - flat design with thin borders */
+.flat-card {
+  border: 1px solid var(--color-border);
+  background-color: #ffffff;
+  padding: var(--space-md);
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+  position: relative;
+}
+
+.flat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent-coral);
+}
+
+/* Image framing rules */
+.screenshot-frame {
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/10;
+  background-color: var(--color-bg-pale);
+}
+
+.screenshot-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(10%) contrast(105%);
+  transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.screenshot-frame:hover img {
+  transform: scale(1.02);
+  filter: grayscale(0%) contrast(100%);
+}
+
+/* Minimalist Letter-spaced tags */
+.tag {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-mid-blue);
+  border: 1px solid rgba(61, 109, 158, 0.3);
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Button & CTA styles */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--color-border);
+  background-color: transparent;
+  color: var(--color-ink-navy);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cta-button:hover {
+  background-color: var(--color-accent-coral);
+  color: #ffffff;
+  border-color: var(--color-accent-coral);
+}
+
+/* Header typography modifications */
+.section-title {
+  font-size: 2.25rem;
+  margin-bottom: var(--space-md);
+  position: relative;
+  display: inline-block;
+}
+
+/* Timeline specific layouts */
+.timeline-item {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.timeline-node {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-bg);
+  z-index: 2;
+}
+
+/* Footer layout */
+footer {
+  background-color: var(--color-bg-pale);
+  padding: var(--space-xl) 0 var(--space-md);
+  border-top: 1px solid rgba(61, 109, 158, 0.15);
+}
