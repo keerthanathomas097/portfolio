@@ -163,7 +163,7 @@ function ProjectCard({ project, index }) {
               </div>
               {project.certificateImage && (
                 <div style={styles.certFrame}>
-                  <img src={project.certificateImage} alt="i2U Project Certificate" style={styles.certImg} />
+                  <img src={`${import.meta.env.BASE_URL}${project.certificateImage.replace(/^\//, '')}`} alt="i2U Project Certificate" style={styles.certImg} />
                 </div>
               )}
             </div>
@@ -205,7 +205,7 @@ function ProjectCard({ project, index }) {
           <div style={styles.mediaBlock}>
             <div className="screenshot-frame" style={styles.screenshotFrame}>
               <img
-                src={project.screenshots[imgIndex]}
+                src={`${import.meta.env.BASE_URL}${project.screenshots[imgIndex].replace(/^\//, '')}`}
                 alt={`${project.title} screenshot ${imgIndex + 1}`}
                 style={styles.img}
               />
